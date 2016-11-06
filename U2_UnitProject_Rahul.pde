@@ -46,6 +46,8 @@ void draw()
   
   v3.x = map(int(v2.x), 0, 640, 0, int(width));
   v3.y = map(int(v2.y), 0, 480, 0, int(height));
+  v4.x = map(int(v2.x), 0, 640, 0, int(width));
+  v4.y = map(int(v2.y), 0, 480, 0, int(height));
   ellipse(v4.x, v4.y, 20, 20);
   ellipse(v4.x, v4.y, 20, 20);
 
@@ -57,11 +59,10 @@ void draw()
   zone.draw();
   wolf.draw();
   
-  if ( zone.isPersonInZone() == true)
+  if ( zone.isPersonInZone () == true)
   {
-    zone.move();
     zone.score++;
-    wolf.recalculateSpeeds();
+    zone.move();
   }
 }
 
