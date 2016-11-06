@@ -6,7 +6,7 @@ KinectTracker tracker;
 Kinect kinect;
 PVector v3;
 
-Spot spot;
+Zone zone;
 Wolf wolf;
 
 void setup() 
@@ -14,7 +14,7 @@ void setup()
   fullScreen();
   kinect = new Kinect(this);
   tracker = new KinectTracker();
-  spot = new Spot();
+  zone = new Zone();
   wolf = new Wolf();
   wolf.picture = loadImage("Wolf.png");
 }
@@ -54,8 +54,15 @@ void draw()
   fill(0);
   
   
-  spot.draw();
+  zone.draw();
   wolf.draw();
+  
+  if ( zone.isPersonInZone() == true)
+  {
+    zone.move();
+    zone.score++;
+    wolf.recalculateSpeeds();
+  }
 }
 
 

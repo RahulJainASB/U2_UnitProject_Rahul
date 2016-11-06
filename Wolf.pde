@@ -34,4 +34,9 @@ class Wolf
     }
     return false;
   }
+  
+  void recalculateSpeeds()
+  {
+    xSpeed = (x - zone.x)/
+  }
 }
