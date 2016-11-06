@@ -25,7 +25,7 @@ class Spot
       if(    ((x + spotWidth) > v3.x   ) &&
       (  v3.x > x   ) &&
       ((y + spotHeight) > v3.y   ) &&
-      (  v3.y >y   ) )
+      (  v3.y > y   ) )
     {
       return true;
     }

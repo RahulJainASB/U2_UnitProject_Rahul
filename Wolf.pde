@@ -21,4 +21,17 @@ class Wolf
   {
     image(picture, x, y, wolfWidth, wolfHeight);
   }
+  
+
+  boolean hasWolfCollided()
+  {
+      if(    ((x + wolfWidth) > v3.x   ) &&
+      (  v3.x > x   ) &&
+      ((y + wolfHeight) > v3.y   ) &&
+      (  v3.y > y   ) )
+    {
+      return true;
+    }
+    return false;
+  }
 }
