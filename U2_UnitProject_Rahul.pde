@@ -5,12 +5,17 @@ import org.openkinect.processing.*;
 KinectTracker tracker;
 Kinect kinect;
 
+Spot spot;
+Wolf wolf;
 
 void setup() 
 {
   fullScreen();
   kinect = new Kinect(this);
   tracker = new KinectTracker();
+  spot = new Spot();
+  wolf = new Wolf();
+  wolf.picture = loadImage("Wolf.png");
 }
 
 void draw() 
@@ -47,8 +52,9 @@ void draw()
   int t = tracker.getThreshold();
   fill(0);
   
-  fill(0, 255, 0);
-  rect(200, 200, 200, 200);
+  
+  spot.draw();
+  wolf.draw();
 }
 /*
 // Adjust the threshold with key presses
