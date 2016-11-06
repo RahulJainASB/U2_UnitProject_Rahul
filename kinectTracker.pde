@@ -1,7 +1,8 @@
 // This is class Kinect Tracker
 // It displays the kinect's readings on depth and from its camera
 
-class KinectTracker {
+class KinectTracker 
+{
 
   // Depth threshold
   int threshold = 950;
@@ -29,7 +30,8 @@ class KinectTracker {
     lerpedLoc = new PVector(0, 0);
   }
 
-  void track() {
+  void track() 
+  {
     // Get the raw depth as array of integers
     depth = kinect.getRawDepth();
 
@@ -39,20 +41,24 @@ class KinectTracker {
     float sumY = 0;
     float count = 0;
 
-    for (int x = 0; x < kinect.width; x++) {
-      for (int y = 0; y < kinect.height; y++) {
+    for (int x = 0; x < kinect.width; x++) 
+    {
+      for (int y = 0; y < kinect.height; y++) 
+      {
 
         int offset =  x + y*kinect.width;
         int rawDepth = depth[offset];
 
-        if (rawDepth < threshold) {
+        if (rawDepth < threshold) 
+        {
           sumX += x;
           sumY += y;
           count++;
         }
       }
     }
-    if (count != 0) {
+    if (count != 0) 
+    {
       loc = new PVector(sumX/count, sumY/count);
     }
 

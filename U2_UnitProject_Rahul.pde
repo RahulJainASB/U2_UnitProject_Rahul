@@ -40,7 +40,6 @@ void draw()
     // Code for running game
   {
     background(255);
-    // Run the tracking analysis
     tracker.track();
     // Show the image
     tracker.display();
