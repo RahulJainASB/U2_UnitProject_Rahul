@@ -1,3 +1,6 @@
+// This is class Wolf
+// It draws and moves the wolf as well as check for its collision
+
 class Wolf
 {
   PImage picture;

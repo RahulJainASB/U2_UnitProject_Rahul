@@ -1,3 +1,9 @@
+/*
+Safe Zone by Rahul Jain
+This project is a game in which the player must move his average point to a defined range (the safe zone) in a timely manner to reach there before a wolf. 
+*/
+
+
 import org.openkinect.freenect.*;
 import org.openkinect.processing.*;
 

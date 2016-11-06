@@ -1,3 +1,6 @@
+// This is class Kinect Tracker
+// It displays the kinect's readings on depth and from its camera
+
 class KinectTracker {
 
   // Depth threshold

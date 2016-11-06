@@ -1,3 +1,6 @@
+// TThis is class Zone
+// It draws the zone and checks for collisions to move it and add to the score 
+
 class Zone
 {
   float x;
