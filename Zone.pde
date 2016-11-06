@@ -18,6 +18,7 @@ class Zone
     setPosition();
   }
 
+  // Setting the position of the zone and moving it inwards if part of it is off the screen
   void setPosition()
   {
     x = random(0, width);
@@ -34,14 +35,14 @@ class Zone
     }
   }
 
-
+  // Drawing the square
   void draw()
   {
     fill(0, 240, 0);
     rect(x, y, zoneWidth, zoneHeight);
   }
 
-
+  //Checking for collision
   boolean isPointInsideZone(float x1, float y1)
   {
 
@@ -55,16 +56,6 @@ class Zone
     {
       return true;
     }
-    /*
-  if(    ((x + zoneWidth) > x1   ) &&
-     (  x1 > x   ) &&
-     ((y + zoneHeight) > y1   ) &&
-     (  y1 > y   ) )
-     {
-     return true;
-     }
-     return false;
-     */
   }
 
   boolean isPersonInZone()

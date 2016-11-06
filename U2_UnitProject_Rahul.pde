@@ -1,13 +1,12 @@
 /*
 Safe Zone by Rahul Jain
-This project is a game in which the player must move his average point to a defined range (the safe zone) in a timely manner to reach there before a wolf. 
-*/
+ This project is a game in which the player must move his average point to a defined range (the safe zone) in a timely manner to reach there before a wolf. 
+ */
 
 
 import org.openkinect.freenect.*;
 import org.openkinect.processing.*;
 
-// The kinect stuff is happening in another class
 KinectTracker tracker;
 Kinect kinect;
 PVector v3;
@@ -29,7 +28,7 @@ void setup()
 
 void draw() 
 {
-
+  // End game screen
   if (endgame == true)
   {
     background(0);
@@ -37,16 +36,16 @@ void draw()
     text("Game Over", 75, 400);
     String s = "Your score is:   " + zone.score;
     text(s, 75, 500);
-  } 
-  else
+  } else
+    // Code for running game
   {
-      background(255);
+    background(255);
     // Run the tracking analysis
     tracker.track();
     // Show the image
     tracker.display();
 
-    // Let's draw the raw location
+    // Raw location
     PVector v1 = tracker.getPos();
     fill(50, 100, 250, 200);
     noStroke();
@@ -56,7 +55,7 @@ void draw()
     v3.y = map(int(v1.y), 0, 480, 0, int(height));
     ellipse(v3.x, v3.y, 20, 20);
 
-    // Let's draw the "lerped" location
+    // Lerped location
     PVector v2 = tracker.getLerpedPos();
     fill(100, 250, 50, 200);
     noStroke();
@@ -69,14 +68,10 @@ void draw()
     ellipse(v4.x, v4.y, 20, 20);
     ellipse(v4.x, v4.y, 20, 20);
 
-    // Display some info
-    int t = tracker.getThreshold();
-    fill(0);
-
-
     zone.draw();
     wolf.draw();
 
+    // When the player reaches the safe zone
     if ( zone.isPersonInZone () == true)
     {
       zone.score++;
@@ -84,19 +79,3 @@ void draw()
     }
   }
 }
-
-/*
-// Adjust the threshold with key presses
- void keyPressed() {
- int t = tracker.getThreshold();
- if (key == CODED) {
- if (keyCode == UP) {
- t+=5;
- tracker.setThreshold(t);
- } else if (keyCode == DOWN) {
- t-=5;
- tracker.setThreshold(t);
- }
- }
- }
- */
