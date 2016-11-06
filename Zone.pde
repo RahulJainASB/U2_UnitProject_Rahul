@@ -19,18 +19,18 @@ class Zone
   {
     x = random(0, width);
     y = random(0, height);
-    
-    if ((x+zoneWidth) > width)
+
+    if ( (x > (width - zoneWidth)))
     {
       x = width - zoneWidth;
     }
-    
-    if ((y+zoneHeight) > height)
+
+    if ( (y > (height - zoneHeight)))
     {
       y = height - zoneHeight;
     }
   }
-  
+
 
   void draw()
   {
@@ -38,23 +38,40 @@ class Zone
     rect(x, y, zoneWidth, zoneHeight);
   }
 
-  boolean isPersonInZone()
+
+  boolean isPointInsideZone(float x1, float y1)
   {
-    
-      if(    ((x + zoneWidth) > v3.x   ) &&
-      (  v3.x > x   ) &&
-      ((y + zoneHeight) > v3.y   ) &&
-      (  v3.y > y   ) )
+
+    if ( (x1 < x ) ||
+      (x1 > (x + zoneWidth) )||
+      (y1 < y ) ||
+      (y1 > (y + zoneHeight)))
+    {
+      return false;
+    } else
     {
       return true;
     }
-    return false;
+    /*
+  if(    ((x + zoneWidth) > x1   ) &&
+     (  x1 > x   ) &&
+     ((y + zoneHeight) > y1   ) &&
+     (  y1 > y   ) )
+     {
+     return true;
+     }
+     return false;
+     */
   }
-  
+
+  boolean isPersonInZone()
+  {
+    return isPointInsideZone(v3.x, v3.y);
+  }
+
   void move()
   {
-    x = random(0, width);
-    y = random(0, height);
+    setPosition();    
+    wolf.setSpeed();
   }
-  
 }

@@ -10,76 +10,64 @@ class Wolf
   int oldTime;
   int newTime;
   int numOfSeconds;
+  boolean keepMoving;
 
   //Constructer
   Wolf()
   {
-    x = random(0, (width-wolfWidth));
-    y = random(0, (height-wolfHeight));
-    wolfWidth = 300;
+    wolfWidth = 180;
     wolfHeight = 300;
+    x = random(0, width);
+    y = random(0, height);
     oldTime = newTime = millis();
-    numOfSeconds = 5;
+    numOfSeconds = 50;
+    xSpeed = 0;
+    ySpeed = 0;
+    keepMoving = true;
   }
 
   void draw() 
   {
+    // Draw the wolf
     image(picture, x, y, wolfWidth, wolfHeight);
+    
+    //Move the wolf after a milli-second. 
+      newTime = millis();
+      if( (newTime != oldTime) && ( keepMoving == true ))
+      {
+        move();
+        oldTime = newTime;
+      }
+    
 
-    newTime = second();
-
-    if (newTime != oldTime)
+// Check if the wolf has collided with the Zone. If so, stop the game
+    if (hasWolfCollided() == true)
     {
-      println (oldTime, "       ", newTime);
-      move();
-      oldTime = newTime;
+      // Game is over
+      endgame = true;
+      keepMoving = false;
     }
+    
   }
-
-
-
-
 
   boolean hasWolfCollided()
   {
-    if (    ((x + wolfWidth) > v3.x   ) &&
-      (  v3.x > x   ) &&
-      ((y + wolfHeight) > v3.y   ) &&
-      (  v3.y > y   ) )
-    {
-      return true;
-    }
-    return false;
+    return zone.isPointInsideZone((x + 151), (y + 25));
   }
-  
+    
   void move()
   {
-    x = ( x + ((zone.x-x)/numOfSeconds));
-    y = ( y + ((zone.y-y)/numOfSeconds));
+    if (( xSpeed == 0) || ( ySpeed == 0))
+    {
+      setSpeed();
+    }
+    x = ( x + xSpeed);
+    y = ( y + ySpeed);
+  }
 
-  /*  
-  if( x > zone.x)
-    {
-      x = x - ((x - zone.x)/numOfSeconds);
-    }
-    else
-    {
-      x = x - ((zone.x - x)/numOfSeconds);
-    }
-    
-    if( y > zone.y)
-    {
-      y =  y - ((y - zone.y)/numOfSeconds);
-    }
-    else
-    {
-      y = y - ((zone.y - y)/numOfSeconds);
-    }
-    */
-    
-    
-    
-//    x = (x - zone.x)/numOfSeconds;
-//    y = (y - zone.y)/numOfSeconds;
+  void setSpeed()
+  {
+    xSpeed = ((zone.x-x)/numOfSeconds);
+    ySpeed = ((zone.y-y)/numOfSeconds);
   }
 }
