@@ -4,6 +4,7 @@ import org.openkinect.processing.*;
 // The kinect stuff is happening in another class
 KinectTracker tracker;
 Kinect kinect;
+PVector v3;
 
 Spot spot;
 Wolf wolf;
@@ -31,7 +32,7 @@ void draw()
   PVector v1 = tracker.getPos();
   fill(50, 100, 250, 200);
   noStroke();
-  PVector v3 = new PVector(0,0);
+  v3 = new PVector(0,0);
   
   v3.x = map(int(v1.x), 0, 640, 0, int(width));
   v3.y = map(int(v1.y), 0, 480, 0, int(height));
@@ -56,6 +57,8 @@ void draw()
   spot.draw();
   wolf.draw();
 }
+
+
 /*
 // Adjust the threshold with key presses
 void keyPressed() {
